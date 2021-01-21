@@ -22,6 +22,9 @@ namespace FlowControl
                     case "2":
                         RepeatTen();
                         break;
+                    case "3":
+                        ThirdWord();
+                        break;
                     case "0":
                         Console.WriteLine("\nHej då!");
                         running = false;
@@ -34,6 +37,20 @@ namespace FlowControl
 
 
             
+        }
+
+        private static void ThirdWord()
+        {
+            Console.WriteLine("\nSkriv en mening med mellanslag så får du tillbaks det tredje ordet:");
+            var input = Console.ReadLine().Split();
+
+            while (input.Length < 3)
+            {
+                Console.WriteLine("\nSkriv minst tre ord");
+                input = Console.ReadLine().Split();
+            }
+
+            Console.WriteLine($"\n{input[2]}");
         }
 
         private static void RepeatTen()
