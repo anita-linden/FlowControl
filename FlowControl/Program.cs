@@ -34,7 +34,7 @@ namespace FlowControl
         }
         private static void PrintInstructions()
         {
-            Console.WriteLine("Välkommen till huvudmenyn. Vänligen ange numret för vald funktion.\n");
+            Console.WriteLine("\nVälkommen till huvudmenyn. Vänligen ange numret för vald funktion.\n");
             Console.WriteLine("1 - Biljett system");
             Console.WriteLine("0 - Avsluta program");
             Console.WriteLine("\n");
@@ -42,17 +42,68 @@ namespace FlowControl
 
         private static void BuyTickets()
         {
-            Console.WriteLine("Hur gammal är kunden?");
-            int age;
-            while (!int.TryParse(Console.ReadLine(), out age))
-                Console.WriteLine("Please type a number for age");
+            Console.WriteLine("\nVälkommen till biografens biljettsystem!");
+            Console.WriteLine("Är ni ett sällskap?\n1 för ja. 2 för nej.");
+            string selection = Console.ReadLine();
 
-            if (age < 20)
-                Console.WriteLine("Ungdomspris: 80 kr");
-            else if (age > 64)
-                Console.WriteLine("Pensionärspris: 90 kr");
+
+            if (selection == "1")
+            {
+                Console.WriteLine("\nHur många är det i sällskapet?");
+                int customers = ReadInteger();
+                int sum = 0;
+                for (int i = 0; i < customers; i++)
+                {
+                    Console.WriteLine("\nHur gammal är denna besökare?");
+                    int age = ReadInteger();
+                    sum += GetTicket(age).Price;
+                }
+                Console.WriteLine($"\nAntal besökare: {customers}");
+                Console.WriteLine($"Totalt kostnad: {sum} kr");
+            }
+            else if (selection == "2")
+            {
+                Console.WriteLine("\nHur gammal är besökaren?");
+                int age = ReadInteger();
+
+                Ticket t = GetTicket(age);
+
+                Console.WriteLine($"\n{t.Type}: {t.Price} kr");
+            }
             else
-                Console.WriteLine("Standardpris: 120 kr");
+                Console.WriteLine("\nOgiltigt kommando");
+            
+        }
+
+        private static int ReadInteger()
+        {
+            int input;
+
+            while (!int.TryParse(Console.ReadLine(), out input) || input < 0)
+                Console.WriteLine("Snälla skriv en giltig siffra");
+            return input;
+        }
+
+        public static Ticket GetTicket(int age)
+        {
+            Ticket t = new Ticket();
+            if (age < 20)
+            {
+                t.Type = "Ungdomspris";
+                t.Price = 80;
+            } 
+            else if (age > 64)
+            {
+                t.Type = "Pensionärspris";
+                t.Price = 90;
+            }
+            else
+            {
+                t.Type = "Standardpris";
+                t.Price = 120;
+            }
+
+            return t;
         }
 
     }
