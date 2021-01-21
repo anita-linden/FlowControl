@@ -19,12 +19,15 @@ namespace FlowControl
                     case "1":
                         BuyTickets();
                         break;
+                    case "2":
+                        RepeatTen();
+                        break;
                     case "0":
-                        Console.WriteLine("Good bye!");
+                        Console.WriteLine("\nHej då!");
                         running = false;
                         break;
                     default:
-                        Console.WriteLine("Undefined input.\n");
+                        Console.WriteLine("\nUndefined input.\n");
                         break;
                 }
             }
@@ -32,10 +35,26 @@ namespace FlowControl
 
             
         }
+
+        private static void RepeatTen()
+        {
+            Console.WriteLine("\nAnge en text för programmet att upprepa:");
+            string input = Console.ReadLine();
+
+            for(int i = 0; i<10; i++)
+            {
+                Console.Write($"{i + 1}. {input}");
+                if (i < 9)
+                    Console.Write(", ");
+            }
+        }
+
         private static void PrintInstructions()
         {
             Console.WriteLine("\nVälkommen till huvudmenyn. Vänligen ange numret för vald funktion.\n");
             Console.WriteLine("1 - Biljett system");
+            Console.WriteLine("2 - Upprepa 10 gånger");
+            Console.WriteLine("3 - Det tredje order");
             Console.WriteLine("0 - Avsluta program");
             Console.WriteLine("\n");
         }
