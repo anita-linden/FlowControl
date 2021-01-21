@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace FlowControl
 {
@@ -15,9 +16,7 @@ namespace FlowControl
             {
                 PrintInstructions();
 
-                string input = Console.ReadLine();
-
-                switch (input)
+                switch (Console.ReadLine())
                 {
                     case "1":
                         BuyTickets();
@@ -51,7 +50,7 @@ namespace FlowControl
             Console.WriteLine("\nVälkommen till huvudmenyn. Vänligen ange numret för vald funktion.\n");
             Console.WriteLine("1 - Biljett system");
             Console.WriteLine("2 - Upprepa 10 gånger");
-            Console.WriteLine("3 - Det tredje order");
+            Console.WriteLine("3 - Det tredje ordet");
             Console.WriteLine("0 - Avsluta program");
             Console.WriteLine("\n");
         }
@@ -115,7 +114,13 @@ namespace FlowControl
         public static Ticket GetTicket(int age)
         {
             Ticket t = new Ticket();
-            if (age < 20)
+
+            if (age < 5 || age > 100)
+            {
+                t.Type = "Gratis";
+                t.Price = 0;
+            }
+            else if(age < 20)
             {
                 t.Type = "Ungdomspris";
                 t.Price = 80;
@@ -159,14 +164,35 @@ namespace FlowControl
         {
             Console.WriteLine("\nSkriv en mening med mellanslag så får du tillbaks det tredje ordet:");
             var input = Console.ReadLine().Split();
+            string word = "";
+            int foundWords = 0;
 
-            while (input.Length < 3)
+            //hitta tredje ordet medans mellanslag ignoreras
+            while (foundWords < 3)
             {
-                Console.WriteLine("\nSkriv minst tre ord");
-                input = Console.ReadLine().Split();
+                foundWords = 0;
+                for (int i = 0; i < input.Length; i++)
+                {
+                    if (input[i] != string.Empty)
+                    {
+                        foundWords++;
+                        if (foundWords == 3)
+                        {
+                            word = input[i];
+                            break;
+                        }
+                    }
+                }
+
+                if (foundWords < 3)
+                {
+                    Console.WriteLine("\nSkriv minst tre ord");
+                    input = Console.ReadLine().Split();
+                }
+                
             }
 
-            Console.WriteLine($"\n{input[2]}");
+            Console.WriteLine($"\n{word}");
         }
 
     }
