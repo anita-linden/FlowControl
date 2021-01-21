@@ -2,6 +2,9 @@
 
 namespace FlowControl
 {
+    /// <summary>
+    /// Ett program för att test switch, for och if satser
+    /// </summary>
     class Program
     {
         static void Main(string[] args)
@@ -39,33 +42,10 @@ namespace FlowControl
             
         }
 
-        private static void ThirdWord()
-        {
-            Console.WriteLine("\nSkriv en mening med mellanslag så får du tillbaks det tredje ordet:");
-            var input = Console.ReadLine().Split();
-
-            while (input.Length < 3)
-            {
-                Console.WriteLine("\nSkriv minst tre ord");
-                input = Console.ReadLine().Split();
-            }
-
-            Console.WriteLine($"\n{input[2]}");
-        }
-
-        private static void RepeatTen()
-        {
-            Console.WriteLine("\nAnge en text för programmet att upprepa:");
-            string input = Console.ReadLine();
-
-            for(int i = 0; i<10; i++)
-            {
-                Console.Write($"{i + 1}. {input}");
-                if (i < 9)
-                    Console.Write(", ");
-            }
-        }
-
+        /// <instruktioner>
+        /// Eventuellt en onödig funktion, men det här hjälper mig att hålla reda på startskärmsinstruktionerna och dess format.
+        /// Kan enkelt lägga till eller ta bort rader som beskriver program funktioner.
+        /// </instruktioner>
         private static void PrintInstructions()
         {
             Console.WriteLine("\nVälkommen till huvudmenyn. Vänligen ange numret för vald funktion.\n");
@@ -76,6 +56,10 @@ namespace FlowControl
             Console.WriteLine("\n");
         }
 
+        /// <biljettköp>
+        /// Ett kvitteringssystem? Skriver ut biljettyp och pris.
+        /// Använder sig av metoderna ReadInteger() och GetTicket() för att hålla koden modulär.
+        /// </biljettköp>
         private static void BuyTickets()
         {
             Console.WriteLine("\nVälkommen till biografens biljettsystem!");
@@ -111,6 +95,11 @@ namespace FlowControl
             
         }
 
+        /// <readint>
+        /// Eftersom jag vill felhantera när användaren inte skriver giltiga siffror i biljettprogrammet,
+        /// så har jag skrivit en metod som hanterar det och ber användaren upprepa tills en giltig siffra
+        /// angivits.
+        /// </readint>
         private static int ReadInteger()
         {
             int input;
@@ -120,6 +109,9 @@ namespace FlowControl
             return input;
         }
 
+        /// <getticket>
+        /// Hämtar korrekt biljettinformation genom en if sats. Huvudmetoden kan sedan skriva ut detta i rätt format.
+        /// </getticket>
         public static Ticket GetTicket(int age)
         {
             Ticket t = new Ticket();
@@ -140,6 +132,41 @@ namespace FlowControl
             }
 
             return t;
+        }
+
+        /// <repeatten>
+        /// Inte mer komplicerat än att ha en 10 steg lång for loop som använder Console.Write för att upprepa en sträng 10 gånger
+        /// Numrerad och separerared med komma
+        /// </repeatten>
+        private static void RepeatTen()
+        {
+            Console.WriteLine("\nAnge en text för programmet att upprepa:");
+            string input = Console.ReadLine();
+
+            for (int i = 0; i < 10; i++)
+            {
+                Console.Write($"{i + 1}. {input}");
+                if (i < 9)
+                    Console.Write(", ");
+            }
+        }
+
+        /// <thirdword>
+        /// Hittar det tredje ordet. Vi upprepar begäran tills användaren har skrivit en sträng med 2 mellanslag genom att kolla
+        /// längden på input.
+        /// </thirdword>
+        private static void ThirdWord()
+        {
+            Console.WriteLine("\nSkriv en mening med mellanslag så får du tillbaks det tredje ordet:");
+            var input = Console.ReadLine().Split();
+
+            while (input.Length < 3)
+            {
+                Console.WriteLine("\nSkriv minst tre ord");
+                input = Console.ReadLine().Split();
+            }
+
+            Console.WriteLine($"\n{input[2]}");
         }
 
     }
