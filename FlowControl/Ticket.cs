@@ -10,20 +10,15 @@ namespace FlowControl
     /// </summary>
     public struct Ticket
     {
-        private string type;
-        private int price;
-
-        public string Type
+        public Ticket(string type, int price)
         {
-            get { return type; }
-            set { type = value; }
+            Type = type;
+            Price = price;
         }
 
-        public int Price
-        {
-            get { return price; }
-            set { price = value; }
-        }
+        public string Type { get; }
+
+        public int Price { get; }
 
 
     }

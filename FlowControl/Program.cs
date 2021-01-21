@@ -113,30 +113,31 @@ namespace FlowControl
         /// </getticket>
         public static Ticket GetTicket(int age)
         {
-            Ticket t = new Ticket();
+            string type = "";
+            int price = 0;
 
             if (age < 5 || age > 100)
             {
-                t.Type = "Gratis";
-                t.Price = 0;
+                type = "Gratis";
+                price = 0;
             }
             else if(age < 20)
             {
-                t.Type = "Ungdomspris";
-                t.Price = 80;
+                type = "Ungdomspris";
+                price = 80;
             } 
             else if (age > 64)
             {
-                t.Type = "Pensionärspris";
-                t.Price = 90;
+                type = "Pensionärspris";
+                price = 90;
             }
             else
             {
-                t.Type = "Standardpris";
-                t.Price = 120;
+                type = "Standardpris";
+                price = 120;
             }
 
-            return t;
+            return new Ticket(type, price);
         }
 
         /// <repeatten>
