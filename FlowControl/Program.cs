@@ -164,36 +164,15 @@ namespace FlowControl
         private static void ThirdWord()
         {
             Console.WriteLine("\nSkriv en mening med mellanslag så får du tillbaks det tredje ordet:");
-            var input = Console.ReadLine().Split();
-            string word = "";
-            int foundWords = 0;
-
-            //hitta tredje ordet medans mellanslag ignoreras
-            while (foundWords < 3)
+            var input = Console.ReadLine().Split(new string[] { " " },StringSplitOptions.RemoveEmptyEntries);
+            
+            while (input.Length < 3)
             {
-                foundWords = 0;
-                for (int i = 0; i < input.Length; i++)
-                {
-                    if (input[i] != string.Empty)
-                    {
-                        foundWords++;
-                        if (foundWords == 3)
-                        {
-                            word = input[i];
-                            break;
-                        }
-                    }
-                }
-
-                if (foundWords < 3)
-                {
-                    Console.WriteLine("\nSkriv minst tre ord");
-                    input = Console.ReadLine().Split();
-                }
-                
+                Console.WriteLine("\nSkriv minst tre ord");
+                input = Console.ReadLine().Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
             }
 
-            Console.WriteLine($"\n{word}");
+            Console.WriteLine($"\n{input[2]}");
         }
 
     }
